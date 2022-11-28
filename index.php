@@ -39,10 +39,20 @@ $hotels = [
     ],
 
 ];
+if (isset($_GET['parking']) && !empty($_GET['parking'])) {
+    $temp = [];
+    foreach ($hotels as $item) {
+        if ($item['parking'] == $_GET['parking']) {
+            $temp[] = $item;
+        }
+    }
+    $hotels = $temp;
+}
+
 
 //stampo array 
 
-var_dump($hotels);
+//var_dump($hotels);
 //foreach ($hotels as $hotel) {
 //foreach ($hotel as $key => $item) {
 //   echo "" . $key . "  " . "" . $item;
@@ -50,7 +60,11 @@ var_dump($hotels);
 //  }
 //  echo "</hr>";
 //}
+
+
+
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -71,35 +85,53 @@ var_dump($hotels);
         <!-- place navbar here -->
     </header>
     <main>
-        <div class="table-responsive-md">
-            <table class="table table-striped table-primary  align-middle">
-                <thead class="table-light">
-                    <caption>Table Name</caption>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Parking</th>
-                        <th>Vote</th>
-                        <th>Distance to Center</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    <?php foreach ($hotels as $hotel) : ?>
+        <h1>HOTELS</h1>
+
+        <section class="p-3">
+            <h3>Cerca i tuoi hotel</h3>
+            <form action="index.php" method="GET">
+                <select name="parking" id="parking">
+                    <option value="">seleziona</option>
+                    <option value="true">disponibile</option>
+                    <option value="false">non disponibile</option>
+                </select>
+                <button type="submit">seleziona</button>
+            </form>
+
+            <br>
+
+            <div>
+                <div class="table-responsive-md">
+                    <table class="table table-striped table-primary  align-middle">
+                        <thead class="table-light">
+                            <caption>Table Name</caption>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Parking</th>
+                                <th>Vote</th>
+                                <th>Distance to Center</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <?php foreach ($hotels as $hotel) : ?>
 
 
-                        <tr class="table-primary">
-                            <?php foreach ($hotel as $key => $item) : ?>
-                                <td scope="row"><?php echo $item ?></td>
+                                <tr class="table-primary">
+                                    <?php foreach ($hotel as $key => $item) : ?>
+                                        <td scope="row"><?php echo $item ?></td>
+                                    <?php endforeach; ?>
+                                </tr>
+
                             <?php endforeach; ?>
-                        </tr>
+                        </tbody>
+                </div>
+                </table>
+            </div>
 
-                    <?php endforeach; ?>
-                </tbody>
-                <tfoot>
 
-                </tfoot>
-            </table>
-        </div>
+
+
 
     </main>
     <footer>
