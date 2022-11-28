@@ -39,7 +39,7 @@ $hotels = [
     ],
 
 ];
-if (isset($_GET['parking']) && !empty($_GET['parking'])) {
+if (isset($_GET['parking'])) {
     $temp = [];
     foreach ($hotels as $item) {
         if ($item['parking'] == $_GET['parking']) {
@@ -91,9 +91,10 @@ if (isset($_GET['parking']) && !empty($_GET['parking'])) {
             <h3>Cerca i tuoi hotel</h3>
             <form action="index.php" method="GET">
                 <select name="parking" id="parking">
-                    <option value="">seleziona</option>
-                    <option value="true">disponibile</option>
-                    <option value="false">non disponibile</option>
+
+                    <option value="1">disponibile</option>
+                    <option value="0">non disponibile</option>
+
                 </select>
                 <button type="submit">seleziona</button>
             </form>
