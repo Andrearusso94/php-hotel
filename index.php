@@ -39,6 +39,17 @@ $hotels = [
     ],
 
 ];
+
+//stampo array 
+
+var_dump($hotels);
+foreach ($hotels as $hotel) {
+    foreach ($hotel as $key => $item) {
+        echo "" . $key . "  " . "" . $item;
+        echo "</br>";
+    }
+    echo "</hr>";
+}
 ?>
 
 <!DOCTYPE html>
